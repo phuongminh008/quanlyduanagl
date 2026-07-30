@@ -1,0 +1,22 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.example:ShopLocalBrand >---------------------
+[INFO] Building ShopLocalBrand 1.0-SNAPSHOT
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ ShopLocalBrand ---
+[INFO] Deleting C:\Users\Admin\Desktop\shoplocalbrand\ShopLocalBrand\target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ ShopLocalBrand ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ ShopLocalBrand ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 21 source files to C:\Users\Admin\Desktop\shoplocalbrand\ShopLocalBrand\target\classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.919 s
+[INFO] Finished at: 2026-07-23T22:33:14+07:00
+[INFO] ------------------------------------------------------------------------
