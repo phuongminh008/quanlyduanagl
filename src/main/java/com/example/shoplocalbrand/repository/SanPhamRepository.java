@@ -32,7 +32,7 @@ public class SanPhamRepository {
                 sp.setIdDanhMuc(rs.getInt("id_danh_muc"));
                 sp.setIdChatLieu(rs.getInt("id_chat_lieu"));
                 sp.setIdKieuDang(rs.getInt("id_kieu_dang"));
-                // Gán tên hiển thị
+                
                 sp.setTenDanhMuc(rs.getString("ten_danh_muc"));
                 sp.setTenChatLieu(rs.getString("ten_chat_lieu"));
                 sp.setTenKieuDang(rs.getString("ten_kieu_dang"));

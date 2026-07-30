@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="vi">
-<!-- Giữ nguyên phần <head> và CSS Sidebar như trang danh-muc.jsp -->
+
 <head>
     <title>Quản lý Nhân Viên - S-Fashion</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
     </style>
 </head>
 <body>
-<!-- SIDEBAR CHUẨN ĐẦY ĐỦ CÁC CHỨC NĂNG -->
+
 <div class="sidebar">
     <h2 class="sidebar-brand">S-FASHION</h2>
     <a href="${pageContext.request.contextPath}/"><i class="bi bi-house-door me-2"></i> Tổng quan</a>
@@ -31,16 +31,16 @@
     <a href="${pageContext.request.contextPath}/doanh-thu"><i class="bi bi-graph-up-arrow me-2"></i> Quản lý Doanh thu</a>
 </div>
 
-<!-- NỘI DUNG -->
+
 <div class="content">
-    <!-- MAIN CONTENT -->
-    <div class="content">
+    
+    <div class="container-fluid p-0">
         <h2 class="mb-4 fw-bold">Quản lý Nhân Viên</h2>
 
         <div class="row">
-            <!-- CỘT TRÁI: FORM THÊM/SỬA -->
-            <div class="col-md-4">
-                <div class="card shadow-sm border-0">
+            
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
                     <div class="card-header bg-primary text-white fw-bold fs-5">
                         ${nvEdit == null ? 'Thêm Nhân Viên Mới' : 'Sửa Nhân Viên'}
                     </div>
@@ -108,10 +108,12 @@
                 </div>
             </div>
 
-            <!-- CỘT PHẢI: BẢNG DỮ LIỆU -->
+            
             <div class="col-md-8">
-                <table class="table table-bordered table-striped text-center align-middle">
-                    <thead class="table-dark">
+                <div class="card shadow-sm">
+                    <div class="card-body border-0 p-0">
+                        <table class="table table-bordered table-striped text-center align-middle mb-0">
+                            <thead class="table-dark">
                     <tr>
                         <th>Mã NV</th>
                         <th>Tên Nhân Viên</th>
@@ -143,7 +145,9 @@
                         </tr>
                     </c:forEach>
                     </tbody>
-                </table>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

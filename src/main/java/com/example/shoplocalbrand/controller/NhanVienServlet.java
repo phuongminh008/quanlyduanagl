@@ -41,7 +41,7 @@ public class NhanVienServlet extends HttpServlet {
         nv.setTenNv(request.getParameter("tenNv"));
         nv.setGioiTinh(request.getParameter("gioiTinh"));
         nv.setSdt(request.getParameter("sdt"));
-        nv.setTenDangNhap(request.getParameter("tenDangNhap")); // Chỉ dùng khi thêm mới
+        nv.setTenDangNhap(request.getParameter("tenDangNhap")); 
         nv.setIdChucVu(Integer.parseInt(request.getParameter("idChucVu")));
         nv.setTrangThai(Integer.parseInt(request.getParameter("trangThai")));
 

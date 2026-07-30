@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-<!-- SIDEBAR CHUẨN ĐẦY ĐỦ CÁC CHỨC NĂNG -->
+
 <div class="sidebar">
     <h2 class="sidebar-brand">S-FASHION</h2>
     <a href="${pageContext.request.contextPath}/"><i class="bi bi-house-door me-2"></i> Tổng quan</a>
@@ -30,12 +30,12 @@
     <a href="${pageContext.request.contextPath}/doanh-thu"><i class="bi bi-graph-up-arrow me-2"></i> Quản lý Doanh thu</a>
 </div>
 
-<!-- MAIN CONTENT -->
+
 <div class="content">
     <h2 class="mb-4 fw-bold">Quản lý Sản Phẩm</h2>
 
     <div class="row">
-        <!-- FORM THÊM MỚI -->
+        
         <div class="col-md-4">
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-primary text-white fw-bold fs-5">Thêm Sản Phẩm Mới</div>
@@ -93,7 +93,7 @@
             </div>
         </div>
 
-        <!-- BẢNG DỮ LIỆU -->
+        
         <div class="col-md-8">
             <table class="table table-bordered table-striped text-center align-middle">
                 <thead class="table-dark">

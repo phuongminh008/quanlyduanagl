@@ -19,12 +19,12 @@ public class SanPhamServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Đẩy danh sách thuộc tính lên để làm thẻ <select>
+        
         request.setAttribute("listDanhMuc", dmRepo.getAll());
         request.setAttribute("listChatLieu", ttRepo.getAllChatLieu());
         request.setAttribute("listKieuDang", ttRepo.getAllKieuDang());
 
-        // Đẩy danh sách sản phẩm
+        
         request.setAttribute("listSanPham", spRepo.getAll());
         request.getRequestDispatcher("/san-pham.jsp").forward(request, response);
     }

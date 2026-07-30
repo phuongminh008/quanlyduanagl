@@ -28,7 +28,7 @@
 <div class="content">
     <h2 class="mb-4 fw-bold">Báo Cáo Doanh Thu</h2>
 
-    <!-- Thẻ tóm tắt tổng doanh thu -->
+    
     <div class="row mb-4">
         <div class="col-md-4">
             <div class="card shadow-sm text-white bg-primary">
@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <!-- Bảng chi tiết theo ngày -->
+    
     <div class="card shadow-sm border-0">
         <div class="card-body p-4">
             <h5 class="fw-bold text-primary mb-3">Doanh thu theo ngày</h5>

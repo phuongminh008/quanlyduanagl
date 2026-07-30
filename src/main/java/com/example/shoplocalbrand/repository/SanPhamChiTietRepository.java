@@ -125,7 +125,7 @@ public class SanPhamChiTietRepository {
     }
 
     public boolean delete(int id) {
-        // Xóa mềm: Chuyển trạng thái thành 0 (Ngừng bán) để tránh lỗi khóa ngoại hóa đơn
+        
         String sql = "UPDATE san_pham_chi_tiet SET trang_thai = 0 WHERE id = ?";
         try (Connection con = DBConnect.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {

@@ -20,13 +20,13 @@ public class SanPhamChiTietServlet extends HttpServlet {
         String idStr = request.getParameter("id");
         String idSanPhamStr = request.getParameter("idSanPham");
 
-        // Trường hợp bấm Xóa
+        
         if ("delete".equals(action)) {
             spctRepo.delete(Integer.parseInt(idStr));
             response.sendRedirect(request.getContextPath() + "/san-pham-chi-tiet?idSanPham=" + idSanPhamStr);
             return;
         }
-        // Trường hợp bấm Sửa (đổ dữ liệu lên form)
+        
         else if ("edit".equals(action)) {
             SanPhamChiTiet spctEdit = spctRepo.findById(Integer.parseInt(idStr));
             request.setAttribute("spctEdit", spctEdit);

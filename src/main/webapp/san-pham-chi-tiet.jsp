@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="vi">
-<!-- Copy phần <head> và cấu trúc Sidebar y hệt như trang san-pham.jsp vào đây -->
+
 <head>
     <title>Sản Phẩm Chi Tiết</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
