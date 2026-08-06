@@ -16,19 +16,34 @@
     </style>
 </head>
 <body>
-<div class="sidebar">
+<div class="sidebar ">
     <h2 class="sidebar-brand">S-FASHION</h2>
-    <a href="${pageContext.request.contextPath}/"><i class="bi bi-house-door me-2"></i> Tổng quan</a>
-    <a href="${pageContext.request.contextPath}/danh-muc"><i class="bi bi-tags me-2"></i> Quản lý Danh mục</a>
-    <a href="${pageContext.request.contextPath}/san-pham"><i class="bi bi-box-seam me-2"></i> Quản lý Sản phẩm</a>
-    <a href="${pageContext.request.contextPath}/nhan-vien"><i class="bi bi-person-badge me-2"></i> Quản lý Nhân viên</a>
-    <a href="${pageContext.request.contextPath}/khach-hang"><i class="bi bi-people me-2"></i> Quản lý Khách hàng</a>
+    
+    <a href="${pageContext.request.contextPath}/" ><i class="bi bi-house-door me-2"></i> Tổng quan</a>
+    <a href="${pageContext.request.contextPath}/danh-muc" ><i class="bi bi-tags me-2"></i> Quản lý Danh mục</a>
+    <a href="${pageContext.request.contextPath}/ban-hang" ><i class="bi bi-cart-check me-2"></i> Quản lý Bán hàng</a>
     <a href="${pageContext.request.contextPath}/hoa-don" class="active"><i class="bi bi-receipt me-2"></i> Quản lý Hóa đơn</a>
-    <a href="${pageContext.request.contextPath}/ban-hang"><i class="bi bi-cart-check me-2"></i> Quản lý Bán hàng</a>
-    <a href="${pageContext.request.contextPath}/khuyen-mai"><i class="bi bi-gift me-2"></i> Quản lý Khuyến mãi</a>
-    <a href="${pageContext.request.contextPath}/doanh-thu"><i class="bi bi-graph-up-arrow me-2"></i> Quản lý Doanh thu</a>
-</div>
+    <a href="${pageContext.request.contextPath}/khach-hang" ><i class="bi bi-people me-2"></i> Quản lý Khách hàng</a>
 
+    <c:if test="${sessionScope.nhanVienLogin.chucVu == 'Quản lý'}">
+        <a href="${pageContext.request.contextPath}/san-pham" ><i class="bi bi-box-seam me-2"></i> Quản lý Sản phẩm</a>
+        <a href="${pageContext.request.contextPath}/nhan-vien" ><i class="bi bi-person-badge me-2"></i> Quản lý Nhân viên</a>
+        <a href="${pageContext.request.contextPath}/khuyen-mai" ><i class="bi bi-gift me-2"></i> Quản lý Khuyến mãi</a>
+        <a href="${pageContext.request.contextPath}/doanh-thu" ><i class="bi bi-graph-up-arrow me-2"></i> Quản lý Doanh thu</a>
+    </c:if>
+    
+    <!-- Khu vực đăng xuất -->
+    <div style="position: absolute; bottom: 20px; width: 100%; border-top: 1px solid #343a40; padding-top: 15px;">
+        <div class="text-center text-white mb-2 fw-bold">
+            Xin chào, ${sessionScope.nhanVienLogin.tenNhanVien}
+            <br>
+            <small class="fw-normal">(${sessionScope.nhanVienLogin.chucVu})</small>
+        </div>
+        <a href="${pageContext.request.contextPath}/dang-xuat" class="d-block text-danger fw-bold text-center" style="border: none; text-decoration: none;" onmouseover="this.style.backgroundColor='transparent'; this.style.color='#dc3545'" onmouseout="this.style.backgroundColor='transparent';">
+            <i class="bi bi-box-arrow-left me-2"></i> Đăng Xuất
+        </a>
+    </div>
+</div>
 <div class="content">
     <h2 class="mb-4 fw-bold">Chi Tiết Hóa Đơn (ID: ${idHoaDonGoc})</h2>
 
