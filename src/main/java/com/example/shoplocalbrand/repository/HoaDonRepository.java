@@ -119,4 +119,84 @@ public class HoaDonRepository {
         } catch (Exception e) { e.printStackTrace(); }
         return null;
     }
+
+    public List<HoaDon> timKiemHoaDon(String tuKhoa, String tuNgay, String denNgay, String trangThai) {
+        List<HoaDon> list = new ArrayList<>();
+        // Câu lệnh gốc đã được điều chỉnh JOIN để tìm theo SDT khách hàng
+        StringBuilder sql = new StringBuilder("SELECT hd.* FROM hoa_don hd LEFT JOIN khach_hang kh ON hd.id_khach = kh.id WHERE 1=1 ");
+        
+        // 1. Nếu có nhập từ khóa (Mã HĐ hoặc SĐT khách)
+        if (tuKhoa != null && !tuKhoa.trim().isEmpty()) {
+            sql.append(" AND (hd.ma_hoa_don LIKE ? OR kh.sdt LIKE ?) ");
+        }
+        
+        // 2. Nếu có chọn Trạng thái (Ví dụ: 1 là Đã thanh toán, 0 là Đã hủy)
+        if (trangThai != null && !trangThai.isEmpty()) {
+            sql.append(" AND hd.trang_thai = ? ");
+        }
+        
+        // 3. Nếu có chọn Khoảng thời gian
+        if (tuNgay != null && !tuNgay.isEmpty() && denNgay != null && !denNgay.isEmpty()) {
+            sql.append(" AND hd.thoi_gian_mua BETWEEN ? AND ? ");
+        }
+        
+        sql.append(" ORDER BY hd.id DESC"); // Mới nhất xếp lên đầu
+
+        try (Connection con = DBConnect.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql.toString())) {
+             
+            int index = 1;
+            if (tuKhoa != null && !tuKhoa.trim().isEmpty()) {
+                ps.setString(index++, "%" + tuKhoa + "%");
+                ps.setString(index++, "%" + tuKhoa + "%");
+            }
+            if (trangThai != null && !trangThai.isEmpty()) {
+                ps.setInt(index++, Integer.parseInt(trangThai));
+            }
+            if (tuNgay != null && !tuNgay.isEmpty() && denNgay != null && !denNgay.isEmpty()) {
+                // Thêm " 00:00:00" và " 23:59:59" để bao trọn trọn vẹn ngày đó
+                ps.setString(index++, tuNgay + " 00:00:00");
+                ps.setString(index++, denNgay + " 23:59:59");
+            }
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                HoaDon hd = new HoaDon();
+                hd.setId(rs.getInt("id"));
+                hd.setMaHoaDon(rs.getString("ma_hoa_don"));
+                hd.setIdNhanVien(rs.getInt("id_nhan_vien"));
+                hd.setIdKhachHang(rs.getInt("id_khach"));
+                hd.setNgayTao(rs.getDate("thoi_gian_mua"));
+                hd.setTongTien(rs.getDouble("tong_tien"));
+                hd.setTrangThai(rs.getInt("trang_thai"));
+                list.add(hd);
+            }
+        } catch (Exception e) { e.printStackTrace(); }
+        return list;
+    }
+
+    // 1. Cập nhật trạng thái Hóa Đơn thành Đã Thanh Toán (ví dụ: 1)
+    public boolean chotHoaDon(int idHoaDon) {
+        String sql = "UPDATE hoa_don SET trang_thai = 1 WHERE id = ?";
+        try (Connection con = DBConnect.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idHoaDon);
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) { e.printStackTrace(); }
+        return false;
+    }
+
+    // 2. Trừ số lượng tồn kho của các sản phẩm đã mua
+    public void truTonKho(int idHoaDon) {
+        String sql = "UPDATE spct " +
+                     "SET so_luong = spct.so_luong - hdct.so_luong " +
+                     "FROM san_pham_chi_tiet spct " +
+                     "JOIN hoa_don_chi_tiet hdct ON spct.id = hdct.id_san_pham_chi_tiet " +
+                     "WHERE hdct.id_hoa_don = ?";
+        try (Connection con = DBConnect.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idHoaDon);
+            ps.executeUpdate();
+        } catch (Exception e) { e.printStackTrace(); }
+    }
 }

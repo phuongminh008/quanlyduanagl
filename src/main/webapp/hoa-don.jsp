@@ -48,21 +48,74 @@
     </style>
 </head>
 <body>
-<div class="sidebar">
+<div class="sidebar ">
     <h2 class="sidebar-brand">S-FASHION</h2>
-    <a href="${pageContext.request.contextPath}/"><i class="bi bi-house-door me-2"></i> Tổng quan</a>
-    <a href="${pageContext.request.contextPath}/danh-muc"><i class="bi bi-tags me-2"></i> Quản lý Danh mục</a>
-    <a href="${pageContext.request.contextPath}/san-pham"><i class="bi bi-box-seam me-2"></i> Quản lý Sản phẩm</a>
-    <a href="${pageContext.request.contextPath}/nhan-vien"><i class="bi bi-person-badge me-2"></i> Quản lý Nhân viên</a>
-    <a href="${pageContext.request.contextPath}/khach-hang"><i class="bi bi-people me-2"></i> Quản lý Khách hàng</a>
+    
+    <a href="${pageContext.request.contextPath}/" ><i class="bi bi-house-door me-2"></i> Tổng quan</a>
+    <a href="${pageContext.request.contextPath}/danh-muc" ><i class="bi bi-tags me-2"></i> Quản lý Danh mục</a>
+    <a href="${pageContext.request.contextPath}/ban-hang" ><i class="bi bi-cart-check me-2"></i> Quản lý Bán hàng</a>
     <a href="${pageContext.request.contextPath}/hoa-don" class="active"><i class="bi bi-receipt me-2"></i> Quản lý Hóa đơn</a>
-    <a href="${pageContext.request.contextPath}/ban-hang"><i class="bi bi-cart-check me-2"></i> Quản lý Bán hàng</a>
-    <a href="${pageContext.request.contextPath}/khuyen-mai"><i class="bi bi-gift me-2"></i> Quản lý Khuyến mãi</a>
-    <a href="${pageContext.request.contextPath}/doanh-thu"><i class="bi bi-graph-up-arrow me-2"></i> Quản lý Doanh thu</a>
-</div>
+    <a href="${pageContext.request.contextPath}/khach-hang" ><i class="bi bi-people me-2"></i> Quản lý Khách hàng</a>
 
+    <c:if test="${sessionScope.nhanVienLogin.chucVu == 'Quản lý'}">
+        <a href="${pageContext.request.contextPath}/san-pham" ><i class="bi bi-box-seam me-2"></i> Quản lý Sản phẩm</a>
+        <a href="${pageContext.request.contextPath}/nhan-vien" ><i class="bi bi-person-badge me-2"></i> Quản lý Nhân viên</a>
+        <a href="${pageContext.request.contextPath}/khuyen-mai" ><i class="bi bi-gift me-2"></i> Quản lý Khuyến mãi</a>
+        <a href="${pageContext.request.contextPath}/doanh-thu" ><i class="bi bi-graph-up-arrow me-2"></i> Quản lý Doanh thu</a>
+    </c:if>
+    
+    <!-- Khu vực đăng xuất -->
+    <div style="position: absolute; bottom: 20px; width: 100%; border-top: 1px solid #343a40; padding-top: 15px;">
+        <div class="text-center text-white mb-2 fw-bold">
+            Xin chào, ${sessionScope.nhanVienLogin.tenNhanVien}
+            <br>
+            <small class="fw-normal">(${sessionScope.nhanVienLogin.chucVu})</small>
+        </div>
+        <a href="${pageContext.request.contextPath}/dang-xuat" class="d-block text-danger fw-bold text-center" style="border: none; text-decoration: none;" onmouseover="this.style.backgroundColor='transparent'; this.style.color='#dc3545'" onmouseout="this.style.backgroundColor='transparent';">
+            <i class="bi bi-box-arrow-left me-2"></i> Đăng Xuất
+        </a>
+    </div>
+</div>
 <div class="content">
     <h2 class="mb-4 fw-bold">Quản lý Hóa Đơn</h2>
+
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <form action="${pageContext.request.contextPath}/hoa-don" method="get" class="row g-3 align-items-end">
+                <!-- Ô tìm kiếm từ khóa -->
+                <div class="col-md-3">
+                    <label class="form-label fw-bold">Tìm kiếm (Mã HĐ, SĐT):</label>
+                    <input type="text" class="form-control" name="tuKhoa" value="${tuKhoa}" placeholder="Nhập từ khóa...">
+                </div>
+                
+                <!-- Trạng thái -->
+                <div class="col-md-2">
+                    <label class="form-label fw-bold">Trạng thái:</label>
+                    <select class="form-select" name="trangThai">
+                        <option value="">-- Tất cả --</option>
+                        <option value="1" ${trangThai == '1' ? 'selected' : ''}>Đã thanh toán</option>
+                        <option value="0" ${trangThai == '0' ? 'selected' : ''}>Đã hủy</option>
+                    </select>
+                </div>
+                
+                <!-- Khoảng thời gian -->
+                <div class="col-md-2">
+                    <label class="form-label fw-bold">Từ ngày:</label>
+                    <input type="date" class="form-control" name="tuNgay" value="${tuNgay}">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label fw-bold">Đến ngày:</label>
+                    <input type="date" class="form-control" name="denNgay" value="${denNgay}">
+                </div>
+                
+                <!-- Nút Lọc và Làm mới -->
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary fw-bold"><i class="bi bi-funnel"></i> Lọc</button>
+                    <a href="${pageContext.request.contextPath}/hoa-don" class="btn btn-secondary fw-bold"><i class="bi bi-arrow-clockwise"></i> Reset</a>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <div class="card shadow-sm border-0">
         <div class="card-body p-4">
